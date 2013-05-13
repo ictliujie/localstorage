@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<title>hello, localstorage</title>
+		<style>
+			.result{
+				width: 500px;
+				height: 300px;
+			}
+		</style>
+		<script src="./localstorage.js"></script>
+	</head>
+	<body>
+		<h1>test localstorage</h1>
+		<input type="text" id="xx"/>
+		<input type="button" value="Set" onclick="setStorage()"/>
+		<input type="button" value="Get" onclick="getStorage()"/>
+		<div class="result" id="result"></div>
+		<script type="text/javascript">
+			var key = "test";
+			function g(id){
+				return document.getElementById(id);
+			}
+			function setStorage(){
+				if(util.localStorage.init()){
+					util.localStorage.set(key, g("xx").value);
+				}else{
+					g("result").innerHTML = "not support local strorage";
+				}
+			}
+			function getStorage(){
+				if(util.localStorage.init()){
+					g("result").innerHTML = util.localStorage.get(key);
+				}else{
+					g("result").innerHTML = "not support local strorage";
+				}
+			}
+		</script>
+	</body>
+</html>
