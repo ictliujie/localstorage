@@ -2,7 +2,7 @@
  * @desc: 一个本地存储的类，兼容各个浏览器
  * 如果支持本地存储，可以借鉴html5，若果是ie8以下，可以使用userdata
  * 兼容ie6+, ff3.5+, chrome4.0+, safari4.0+, opera10.5+
- * @author: 刘杰
+ * @author: 刘杰 dive
  * @email: liujiejunior@gmail.com
  */
  
@@ -12,6 +12,7 @@ util.localStorage = (function(window){
 	var fname = location.hostname;
 	var loc = null;
 	return {
+		//初始化，判断浏览器是否支持本地存储，如果支持，则初始化本地存储对象，否则返回false
 		init: function(){			
 			if(supportHtml5Storage){
 				loc = window.localStorage;				
@@ -32,6 +33,7 @@ util.localStorage = (function(window){
 				}
 			}
 		},
+		//设置键值对，options暂时不用
 		set: function(key, value, options){
 			if(!!!key) return false;
 			if(supportHtml5Storage){
@@ -47,6 +49,7 @@ util.localStorage = (function(window){
 				loc.save(fname);
 			}
 		},
+		//获取值
 		get: function(key){
 			if(!!!key) return null;
 			if(supportHtml5Storage){
@@ -56,6 +59,7 @@ util.localStorage = (function(window){
 				return loc.getAttribute(key);
 			}
 		},
+		//删除值
 		remove: function(key){
 			if(!!!key) return false;
 			if(supportHtml5Storage){
@@ -66,6 +70,7 @@ util.localStorage = (function(window){
 				loc.save(fname);
 			}
 		},
+		//清除本地存储对象
 		clear: function(){
 			if(supportHtml5Storage){
 				loc.clear();
